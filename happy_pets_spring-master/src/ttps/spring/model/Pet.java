@@ -20,16 +20,18 @@ public class Pet {
 	public String signs;
 	//public Image picture;
 	//public ArrayList<Event> events;
-	//public Owner owner;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Vet_id")
+	@JoinColumn(name = "owner_id")
+	public Owner owner;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "vet_id")
 	public Vet vet;
 	
 	public Pet() {
 	}
 	
 	public Pet(String name, Date birthday, String specie, String race, String sex, String colour,
-			String signs, Vet vet) {
+			String signs, Vet vet, Owner owner) {
 		this.name = name;
 		this.birthday = birthday;
 		this.specie = specie;
@@ -39,12 +41,9 @@ public class Pet {
 		this.signs = signs;
 		//this.picture = picture;
 		//this.events = new ArrayList<Event> ();
-		//this.owner = owner;
+		this.owner = owner;
 		this.vet = vet;
 	}
-
-    public Pet(String name, Date today, String perro, String mezcla, String masculino, String negro, String ninguna, Vet vet1, Owner owner) {
-    }
 
     public String getName() {
 		return name;
@@ -100,12 +99,13 @@ public class Pet {
 	public void setEvents(ArrayList<Event> events) {
 		this.events = events;
 	}
+	*/
 	public Owner getOwner() {
 		return owner;
 	}
 	public void setOwner(Owner owner) {
 		this.owner = owner;
-	} */
+	}
 	public Vet getVet() {
 		return vet;
 	}

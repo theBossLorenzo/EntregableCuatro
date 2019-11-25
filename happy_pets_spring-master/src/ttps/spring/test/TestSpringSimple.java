@@ -22,10 +22,13 @@ public class TestSpringSimple {
 	   ctx.refresh();
 
 	   UserDAOInterface userDAO = ctx.getBean("userDAO", UserDAOInterface.class);
+	   PetDAOInterface petDAO = ctx.getBean("petDAO", PetDAOInterface.class);
 	   
 	   Admin admin1 = new Admin("Lorenzo", "1234", "Lorenzo", "4273723295", "lorenzoCarlos@yahoo.com");
 
 	   userDAO.persist(admin1);
+	   Long numero = new Long(1);
+	   System.out.println(petDAO.recuperarTodasLasMascotasParaUnOwner(numero).size());
 	   System.out.println(userDAO.getAllUsers().size());
 	   
 	   

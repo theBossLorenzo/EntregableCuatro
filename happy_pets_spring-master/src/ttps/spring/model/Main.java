@@ -14,7 +14,6 @@ public class Main {
 		Vet vet1 = new Vet("Roqueskere", "1234", "Carlos", "4273795", "carlos@yahoo.com", "el perro feliz", "calle falsa");
 		Admin admin1 = new Admin("Lorenzo", "1234", "Lorenzo", "4273723295", "lorenzoCarlos@yahoo.com");
 		Owner owner = new Owner("Fede", "1234", "fedemozzon", "221163", "mozzonfederico@gmail.com");
-		Pet pet1 = new Pet("Olaf",today , "Perro", "Mezcla", "Masculino", "Negro", "Ninguna", vet1, owner );
 		Visit visita = new Visit(vet1, today, 45, "Caca", "Tenia mucho dolor", "Cantar una cancion");
 		Vaccine vacuna = new Vaccine(today, vet1, "HOLalalalal");
 		
@@ -23,7 +22,6 @@ public class Main {
 		
 		DaoFactory.getVetDAO().persist(vet1);
 		DaoFactory.getOwnerDAO().persist(owner);
-		DaoFactory.getPetDAO().persist(pet1);
 		DaoFactory.getAdminDAO().persist(admin1);
 		DaoFactory.getEventDAO().persist(visita);
 		DaoFactory.getEventDAO().persist(vacuna);
