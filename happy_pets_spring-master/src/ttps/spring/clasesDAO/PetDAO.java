@@ -21,6 +21,7 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
 			return pet;
 	}
 
+
     @Override
     public Pet recuperarPet(Long id) {
         return null;
@@ -28,7 +29,6 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
 
     @Override
     public List<Pet> recuperarTodasLasMascotasParaUnOwner(Long id) {
-        //Pasar a HQL
         return this.getEntityManager().createNativeQuery("select * from Pet p where p.owner_id = ?1").setParameter(1, id).getResultList();
     }
 

@@ -32,7 +32,10 @@ public class Owner extends User {
 		this.pets = new ArrayList<>();
 		
 	}
-	
+
+	public Owner() {
+	}
+
 	public void addPet(Pet pet) {
 		getPets().add(pet);
 	}
