@@ -14,13 +14,6 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
     public PetDAO() { super(Pet.class);
     }
 
-	public Pet recuperarPet(long l) {
-			Query consulta = EMF.getEMF().createEntityManager().createQuery("select p from Pet v where p.pet_id =?1");
-			consulta.setParameter(1, l);
-			Pet pet = (Pet)consulta.getSingleResult();
-			return pet;
-	}
-
 
     @Override
     public Pet recuperarPet(Long id) {
@@ -30,6 +23,14 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
     @Override
     public List<Pet> recuperarTodasLasMascotasParaUnOwner(Long id) {
         return this.getEntityManager().createNativeQuery("select * from Pet p where p.owner_id = ?1").setParameter(1, id).getResultList();
+    }
+    
+    public List<Pet> recuperarMascota(String nombre) {
+        return this.getEntityManager().createNativeQuery("select * from Pet p where p.name = ?1").setParameter(1, nombre).getResultList();
+    }
+    
+    public boolean verificarExistencia(String nombre) {
+    	return recuperarMascota(nombre).isEmpty();
     }
 
     @Override

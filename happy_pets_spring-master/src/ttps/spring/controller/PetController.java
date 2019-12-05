@@ -1,5 +1,6 @@
 package ttps.spring.controller;
 
+import org.omg.CORBA.portable.ValueOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,13 +18,23 @@ public class PetController {
     @Autowired
     PetService petService;
 
-    @GetMapping("/pets")
-    public ResponseEntity<List<Pet>> listAllPets(){
-        List<Pet> pets = petService.getAllPets();
+    @GetMapping("/pets/{id}")
+    public ResponseEntity<List<Pet>> listAllPets(@PathVariable("id")long id){
+        List<Pet> pets = petService.getAllPets(id);
         if(pets.isEmpty()){
             return new  ResponseEntity<List<Pet>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Pet>>(pets, HttpStatus.OK);
+    }
+    
+    @PostMapping("/pets")
+    public ResponseEntity<Void> createPet(@RequestBody Pet pet){
+    	System.out.println(pet);
+    	if(petService.isPetExist(pet)) {
+    		return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+    	}
+    	petService.savePet(pet);
+    	return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
 }

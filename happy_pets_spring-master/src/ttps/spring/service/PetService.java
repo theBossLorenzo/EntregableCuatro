@@ -16,13 +16,14 @@ public class PetService {
 	@Autowired
 	PetDAOInterface petDAO;
 
-    public List<Pet> getAllPets(){
-        return petDAO.recuperarTodasLasMascotasParaUnOwner((long) 1);
+    public List<Pet> getAllPets(long id){
+        return petDAO.recuperarTodasLasMascotasParaUnOwner(id);
     }
-    public static boolean isPetExist(Pet pet) {
-        return true;
+    public boolean isPetExist( Pet pet) {
+        return petDAO.verificarExistencia(pet.name);
     }
 
-    public static void savePet(Pet pet) {
+    public Pet savePet(Pet pet) {
+    	return petDAO.persist(pet);
     }
 }
