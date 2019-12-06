@@ -29,8 +29,7 @@ public class PetController {
     
     @PutMapping("/pets")
     public ResponseEntity<Void> createPet(@RequestBody Pet pet){
-    	System.out.println(pet);
-    	if(petService.isPetExist(pet)) {
+    	if(petService.getPet(pet)) {
     		return new ResponseEntity<Void>(HttpStatus.CONFLICT);
     	}
     	petService.savePet(pet);

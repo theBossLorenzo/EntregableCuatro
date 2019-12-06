@@ -30,7 +30,7 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
     }
     
     public boolean verificarExistencia(String nombre) {
-    	System.out.print(recuperarMascota(nombre));
+    	
     	return recuperarMascota(nombre).isEmpty();
     }
 
@@ -38,4 +38,11 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
     public List<Pet> recuperarTodasLasMascotasParaUnVet(Long id) {
         return null;
     }
+    
+	@Override
+	public boolean getPet(String name) {
+		int pet = this.getEntityManager().createNativeQuery("select * from Pet where Pet.name = ?1").setParameter(1, name).getResultList().size();
+		System.out.print(this.getEntityManager().createNativeQuery("select * from Pet").getResultList().size());
+		return pet == 1;
+	}
 }
