@@ -27,7 +27,7 @@ public class PetController {
         return new ResponseEntity<List<Pet>>(pets, HttpStatus.OK);
     }
     
-    @PostMapping("/pets")
+    @PutMapping("/pets")
     public ResponseEntity<Void> createPet(@RequestBody Pet pet){
     	System.out.println(pet);
     	if(petService.isPetExist(pet)) {

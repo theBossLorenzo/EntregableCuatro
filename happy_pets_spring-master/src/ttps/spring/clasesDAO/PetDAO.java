@@ -1,4 +1,4 @@
-package ttps.spring.clasesDAO;
+ package ttps.spring.clasesDAO;
 
 
 import ttps.spring.interfacesDAO.PetDAOInterface;
@@ -30,6 +30,7 @@ public class PetDAO extends GenericDao<Pet> implements PetDAOInterface {
     }
     
     public boolean verificarExistencia(String nombre) {
+    	System.out.print(recuperarMascota(nombre));
     	return recuperarMascota(nombre).isEmpty();
     }
 

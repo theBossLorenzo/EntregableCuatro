@@ -19,8 +19,8 @@ public class PetService {
     public List<Pet> getAllPets(long id){
         return petDAO.recuperarTodasLasMascotasParaUnOwner(id);
     }
-    public boolean isPetExist( Pet pet) {
-        return petDAO.verificarExistencia(pet.name);
+    public boolean isPetExist(Pet pet) {
+        return petDAO.verificarExistencia(pet.getName());
     }
 
     public Pet savePet(Pet pet) {

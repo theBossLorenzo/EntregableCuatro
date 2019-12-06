@@ -16,7 +16,24 @@ public class UserDAO extends GenericDao<User> implements UserDAOInterface {
 
 
 	@Override
+	public boolean getUser(String mail, String password) {
+		int vet = this.getEntityManager().createNativeQuery("select * from Vet where Vet.user_mail = ?1  and Vet.user_password = ?2 ").setParameter(1, mail).setParameter(2, password).getResultList().size();
+		int owner = this.getEntityManager().createNativeQuery("select * from Owner where Owner.user_mail = ?1  and Owner.user_password = ?2 ").setParameter(1, mail).setParameter(2, password).getResultList().size(); 
+		int admin = this.getEntityManager().createNativeQuery("select * from Admin where Admin.user_mail = ?1  and Admin.user_password = ?2 ").setParameter(1, mail).setParameter(2, password).getResultList().size();
+		return vet == 1 || owner == 1 || admin == 1;
+	}
+
+
+	@Override
 	public List<User> getAllUsers() {
-		return this.getEntityManager().createNativeQuery("select user_mail, user_password from Admin union select user_mail, user_password from Owner").getResultList();
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Boolean getUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

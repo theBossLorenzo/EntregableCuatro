@@ -3,7 +3,7 @@ package ttps.spring.model;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class User {
+public class User {
 	public String user_name;
 	public String user_password;
 	public String user_surname;

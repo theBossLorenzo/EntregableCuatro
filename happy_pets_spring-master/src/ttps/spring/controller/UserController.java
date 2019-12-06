@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,15 +22,15 @@ import ttps.spring.service.UserService;
 public class UserController {
 	
 	@Autowired
-    UserDAOInterface userService;
+    UserService userService;
     
-    @GetMapping("/login/{id}")
-    public ResponseEntity<List<User>> listAllPets(@PathVariable("id")long id){
-        List<User> users = userService.getAllUsers();
-        if(users.isEmpty()){
-            return new  ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+    @PutMapping("/login")
+    public ResponseEntity<User> listAllPets(@RequestBody User user ){
+        Boolean users = userService.getUser(user);   
+        if(!users){
+            return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
 

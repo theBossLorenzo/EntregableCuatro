@@ -7,4 +7,8 @@ public interface UserDAOInterface extends GenericDAOInterface<User> {
 
     public List<User> getAllUsers();
 
+	public boolean getUser(String mail, String password);
+
+	public Boolean getUser(User user);
+
 }
